@@ -22,7 +22,7 @@ As this is totally proof of concept and no specific data has been provided so th
 
 * Go to http://localhost:5601 once docker started all containers
 * Go to "Discover" tab
-* On filter search change "*" into "*:*" and tap Enter
+* On filter search change `"*"` into `"*:*"` and tap Enter
 * Scroll down to see results
 
 ## Looking for a results
