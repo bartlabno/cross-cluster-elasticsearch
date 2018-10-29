@@ -9,7 +9,7 @@ Proof of concept and instructions on how to enable cross-clustering search on El
 > curl -X PUT "localhost:9203/point-of-interest"
 
 ## To check if cross clustering seeds are attached and healthy:
-curl -XGET -H 'Content-Type: application/json' localhost:9201/_remote/info?pretty
+> curl -XGET -H 'Content-Type: application/json' localhost:9201/_remote/info?pretty
 
 ## To put data (per cluster)
 ### Krakow cluster
@@ -29,9 +29,9 @@ As this is totally proof of concept and no specific data has been provided so th
 
 There are many ways to look after results in indices and clusters. Remember you can use wildcards, specific names and commas to be more specific on results which gives you complete freedom on result searching. In fact, you can search on different indices across different clusters, you can use wildcards on multiple similar clusters or indices, you can add part of the name or be more specific. You can also mix multiple clusters using commas to separate them. There is complete freedom on search. This is subject to both - ElasticSearch and later Kibana
 
-> London:point-of-interest
-> *:*
-> Krakow:point-of-*
-> *:point-of-interest
-> Krakow:point-of-interest,London:point-of-interest
-> London*:*
+```London:point-of-interest
+*:*
+Krakow:point-of-*
+*:point-of-interest
+Krakow:point-of-interest,London:point-of-interest
+London*:*```
