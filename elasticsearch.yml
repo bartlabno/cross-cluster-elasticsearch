@@ -1,0 +1,11 @@
+network.host: 0.0.0.0
+search:
+  remote:
+    Krakow:
+      seeds:
+        - kra-1:9300
+        - kra-2:9300
+    London:
+      seeds:
+        - lon-1:9300
+        - lon-2:9300

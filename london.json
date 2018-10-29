@@ -1,0 +1,6 @@
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "11" } }
+{ "address": "20, Old Street", "rating": 2, "shop": "Starbucks" }
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "12" } }
+{ "address": "1, High Street", "rating": 5, "shop": "Starbucks" }
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "13" } }
+{ "address": "New Corner Place", "rating": 3, "shop": "Costa" }

@@ -1,0 +1,8 @@
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "11" } }
+{ "address": "Nowa 1", "rating": 4, "shop": "Starbucks" }
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "12" } }
+{ "address": "Rynek Glowny 4", "rating": 5, "shop": "Starbucks" }
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "13" } }
+{ "address": "Slawkowska 22", "rating": 0, "shop": "Costa" }
+{ "index" : { "_index" : "point-of-interest", "_type" : "coffee", "_id" : "14" } }
+{ "address": "Warszawska 8", "rating": 4, "shop": "Costa" }

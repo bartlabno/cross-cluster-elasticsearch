@@ -1,0 +1,127 @@
+version: '2.2'
+services:
+  kra-1:
+    image: docker.elastic.co/elastic/elastic:6.4.2
+    build:
+      context: .
+    container_name: kra-1
+    environment:
+      - cluster.name=Krakow
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=lon-1,lon-2,kra-1,kra-2"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9201:9200
+    networks:
+      - esnet
+    healthcheck:
+      test: curl --silent --fail localhost:9200/_cat/health || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 5
+  kra-2:
+    image: docker.elastic.co/elastic/elastic:6.4.2
+    build:
+      context: .
+    container_name: kra-2
+    environment:
+      - cluster.name=Krakow
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=lon-1,lon-2,kra-1,kra-2"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    ports:
+      - 9202:9200
+    networks:
+      - esnet
+    healthcheck:
+      test: curl --silent --fail localhost:9200/_cat/health || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 5
+  lon-1:
+    image: docker.elastic.co/elastic/elastic:6.4.2
+    build:
+      context: .
+    container_name: lon-1
+    environment:
+      - cluster.name=London
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=lon-1,lon-2,kra-1,kra-2"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata3:/usr/share/elasticsearch/data
+    ports:
+      - 9203:9200
+    networks:
+      - esnet
+    healthcheck:
+      test: curl --silent --fail localhost:9200/_cat/health || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 5
+  lon-2:
+    image: docker.elastic.co/elastic/elastic:6.4.2
+    build:
+      context: .
+    container_name: lon-2
+    environment:
+      - cluster.name=London
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=lon-1,lon-2,kra-1,kra-2"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata4:/usr/share/elasticsearch/data
+    ports:
+      - 9204:9200
+    networks:
+      - esnet
+    healthcheck:
+      test: curl --silent --fail localhost:9200/_cat/health || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 5
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.2
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana.localhost
+      ELASTICSEARCH_URL: http://kra-1:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - "kra-1"
+    networks:
+      - esnet
+
+volumes:
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+  esdata3:
+    driver: local
+  esdata4:
+    driver: local
+
+networks:
+  esnet:
